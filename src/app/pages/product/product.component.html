@@ -1,0 +1,51 @@
+<div class="grid md:grid-cols-2 grid-cols-1 gap-6 px-2">
+  <div class="col-span-1">
+    <img
+      [src]="product.image"
+      alt=""
+      class="object-center object-contain h-full w-full transform transition-all hover:scale-110"
+    />
+  </div>
+  <div class="col-span-1">
+    <div class="flex flex-col items-start">
+      <h1 class="text-xl font-extrabold">{{ product.title }}</h1>
+      <p class="text-xl">Price: ${{ product.price }}</p>
+      <p class="text-lg">{{ product.description }}</p>
+      <div class="flex flex-row mt-5 justify-evenly w-full">
+        <button
+          class="
+            py-3
+            px-8
+            rounded-full
+            border-2
+            transform
+            transition-all
+            hover:scale-110
+            border-green-400
+            text-green-400
+            hover:text-green-100
+            hover:bg-green-400
+            "
+            >
+            Add To Cart
+            </button
+            ><button
+            class="
+            py-3
+            px-8
+            rounded-full
+            border-2
+            transform
+            transition-all
+            hover:scale-110
+            border-rose-400
+            text-rose-400
+            hover:text-rose-100
+            hover:bg-rose-400
+          "
+        > Add To Wishlist</button>
+      </div>
+    </div>
+    <!-- <img [src]="product.image" alt="" class="object-center object-contain h-full w-full"> -->
+  </div>
+</div>
