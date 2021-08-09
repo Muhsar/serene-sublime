@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import axios from "axios"
 @Component({
   selector: 'app-products',
@@ -11,10 +11,11 @@ export class ProductsComponent implements OnInit {
 category: string
 totalProducts: number = 0
 currentProducts: number = 0
-  constructor(private route: ActivatedRoute) { 
+  constructor(private route: ActivatedRoute, private router: Router) { 
   }
 
   ngOnInit(): void {
+    !localStorage?.token && this.router.navigate(['/login'])
     this.category = this.route.snapshot.paramMap.get('id')
     console.log(this.category)
     const url = this.category == "all" ? `https://fakestoreapi.com//products` : `https://fakestoreapi.com//products/category/${this.category}`

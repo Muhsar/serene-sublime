@@ -1,5 +1,5 @@
 <div class="grid md:grid-cols-2 grid-cols-1 gap-6 px-2">
-  <div class="col-span-1">
+  <div class="col-span-1 max-h-96">
     <img
       [src]="product.image"
       alt=""
@@ -26,6 +26,7 @@
             hover:text-green-100
             hover:bg-green-400
             "
+            (click)="AddToCart($event)"
             >
             Add To Cart
             </button
@@ -43,6 +44,7 @@
             hover:text-rose-100
             hover:bg-rose-400
           "
+          (click)="AddToWishList($event)"
         > Add To Wishlist</button>
       </div>
     </div>

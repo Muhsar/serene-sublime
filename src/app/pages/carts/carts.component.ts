@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { getRequest, deleteRequest } from '../../../api/apiCall';
+import { Get_All_Cart, Get_Cart } from '../../../api/apiUrl';
 
 @Component({
   selector: 'app-carts',
@@ -8,8 +10,20 @@ import { Component, OnInit } from '@angular/core';
 export class CartsComponent implements OnInit {
 
   constructor() { }
-
+carts: any[]
   ngOnInit(): void {
+    getRequest({
+      url: Get_All_Cart
+    }).then(res=>{
+      this.carts = res.data
+    })
   }
-
+async deleteItem(e:any, id: any) {
+  e.preventDefault()
+  await deleteRequest({
+    url: Get_Cart(id)
+  }).then(res=>{
+    this.carts = res.data
+  })
+}
 }

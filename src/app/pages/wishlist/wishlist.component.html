@@ -1,1 +1,32 @@
-<p>wishlist works!</p>
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div>
+    <div class="flow-root mt-6">
+      <ul class="-my-5 divide-y divide-gray-200">
+        <li class="py-4" *ngFor="let wish of wish">
+          <div class="flex flex-row justify-evenly items-center space-x-4">
+            <div class="flex-shrink-0">
+              <img class="h-16 w-16 rounded-lg object-contain object-center transform transition-all hover:scale-110" src="{{wish.image}}" alt="">
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium text-gray-900 truncate">
+                {{wish.title}}
+              </p>
+              <p class="text-sm text-gray-500 truncate">
+                ${{wish.price}}
+              </p>
+            </div>
+            <div>
+              <button class="inline-flex items-center shadow-sm px-2.5 py-0.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50"
+              (click)="deleteWish($event, wish.product_id)"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </li>
+  
+        
+      </ul>
+    </div>
+  </div>
+  

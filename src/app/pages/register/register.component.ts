@@ -3,6 +3,9 @@ import { FormControl, Validators } from '@angular/forms';
 import axios from 'axios';
 import { FormBuilder } from '@angular/forms';
 import { FormArray } from '@angular/forms';
+import { REGISTER } from '../../../api/apiUrl';
+import { Router } from "@angular/router"
+import { registration } from '../../../api/apiCall';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -10,9 +13,10 @@ import { FormArray } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
+    localStorage?.token && this.router.navigate(['/'])
   }
 profileForm = this.fb.group({
     email: ['', Validators.required],
@@ -20,9 +24,35 @@ profileForm = this.fb.group({
     image: [''],
     password: ['', Validators.required]
   });
-    onSubmit(event: any) {
+    async onSubmit(event: any) {
       event.preventDefault()
     console.warn(this.profileForm.value);
+    const data = new FormData()
+    data.append('file', this.selectedFile)
+    data.append('upload_preset', 'jewbreel')
+    await axios.post('https://api.cloudinary.com/v1_1/jewbreel1/image/upload',
+    data
+    ).then(res=>{
+      this.profileForm.value.image = res.data.secure_url
+    })
+    console.log(this.profileForm.value.image)
+    const {
+      full_name,
+      email,
+      password,
+      image
+    } = this.profileForm.value
+    await registration({
+      url: REGISTER,
+      data: {
+      full_name,
+      email,
+      password,
+      image
+    }
+    }).then(res=>{
+      this.router.navigate(['/'])
+    })
   }
 selectedFile: File;
   title = 'myapp';

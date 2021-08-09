@@ -1,4 +1,4 @@
-<body class="flex flex-col w-screen min-h-screen p-10 bg-gray-100 text-gray-800">
+<div class="flex flex-col w-screen min-h-screen p-10 bg-gray-100 text-gray-800">
 
 	<!-- Component Start -->
 	<h1 class="text-3xl capitalize">{{category}} Products</h1>
@@ -21,9 +21,9 @@
 		<div
 		*ngFor="let product of products"
 		>
-			<a href="#" class="block h-64 rounded-lg shadow-lg bg-white">
+			<div class="block h-64 rounded-lg shadow-lg bg-white">
 				<img [src]="product.image" class="h-full object-contain object-center w-full transform transition-all hover:scale-110" alt="">
-			</a>
+			</div>
 			<div class="flex items-center justify-between mt-3">
 				<div>
 					<a href="#" class="font-medium">{{product.title}}</a>
@@ -50,4 +50,4 @@
 	</div> -->
 	<!-- Component End  -->
 
-</body>
+</div>

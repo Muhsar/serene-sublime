@@ -3,38 +3,38 @@ import { FormControl, Validators } from '@angular/forms';
 import axios from 'axios';
 import { FormBuilder } from '@angular/forms';
 import { FormArray } from '@angular/forms';
+  import { Router } from "@angular/router"
+import { login } from '../../../api/apiCall';
+import { LOGIN } from '../../../api/apiUrl';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
+    localStorage?.token && this.router.navigate(['/'])
   }
     profileForm = this.fb.group({
     email: ['', Validators.required],
     password: ['', Validators.required]
   });
-    onSubmit() {
-    console.warn(this.profileForm.value);
-  }
-selectedFile: File;
-  title = 'myapp';
-  name = new FormControl('');
-  url = ""
-  display = () => {
-    alert(this.name.value);
-  };
-  public addFile(event: any) {
-    if (event.target.files && event.target.files[0]) {
-      this.selectedFile = event.target.files[0]
-            var reader = new FileReader();
-            reader.onload = (event: any) => {
-                this.url = event.target.result;
-            }
-            reader.readAsDataURL(event.target.files[0]);
-        }
+    async onSubmit(event: any) {
+      event.preventDefault()
+    console.warn(this.profileForm.value);const {
+      email,
+      password,
+    } = this.profileForm.value
+    await login({
+      url: LOGIN,
+      data: {
+      email,
+      password
+    }
+    }).then(res=>{
+      this.router.navigate(['/'])
+    })
   }
 }

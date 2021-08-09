@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import axios from 'axios';
+import { postRequest } from '../../../api/apiCall';
+import { Add_TO_Cart, Add_TO_Wish } from '../../../api/apiUrl';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -9,7 +11,7 @@ import axios from 'axios';
 export class ProductComponent implements OnInit {
 
 productId: string
-  constructor(private route: ActivatedRoute) { 
+  constructor(private route: ActivatedRoute, private router: Router) { 
   }
 
   ngOnInit(): void {
@@ -21,6 +23,55 @@ productId: string
     const response = res.data
     this.product = response
     })
+}
+async AddToCart(e: any) {
+  e.preventDefault()
+  const {
+    image,
+  title,
+  description,
+  price,
+  category,
+  id: product_id
+  } = this.product
+  postRequest({
+    url: Add_TO_Cart,
+    data: {
+    image,
+  title,
+  description,
+  price,
+  category,
+  product_id,
+  amount: 1
+  }
+  }).then(res=>{
+    this.router.navigate(['/cart'])
+  })
+}
+async AddToWishList(e: any) {
+  e.preventDefault()
+  const {
+    image,
+  title,
+  description,
+  price,
+  category,
+  id: product_id
+  } = this.product
+  postRequest({
+    url: Add_TO_Wish,
+    data: {
+    image,
+  title,
+  description,
+  price,
+  category,
+  product_id
+  }
+  }).then(res=>{
+    this.router.navigate(['/wishlist'])
+  })
 }
 product: {
   image: string,

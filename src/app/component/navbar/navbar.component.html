@@ -1,57 +1,14 @@
-<nav
-  class="top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 "
->
-  <div
-    class="container px-4 mx-auto flex flex-wrap items-center justify-between"
-  >
-    <div
-      class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start"
-    >
-      <a
-        class="font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap text-2xl text-white uppercase"
-        routerLink="/"
-        >Serene And Sublime</a
-      ><button
-        class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
-        type="button"
-        (click)="toggleNavbar()"
-      >
-        <div class="bg-white my-1 h-1 w-6"></div>
-        <div class="bg-white my-1 h-1 w-6"></div>
-        <div class="bg-white my-1 h-1 w-6"></div>
-      </button>
-    </div>
-    <div
-      class="lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none"
-      >
-      <ul class="{{style}}"
-      [ngClass]="{'hidden': !showMenu, 'flex': showMenu}"
-      >
-        <li class="flex items-center">
-          <a
-            class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 pl-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-            routerLink="/products/all"
-            >
-            Products</a
-          >
-        </li>
-        <li class="flex items-center">
-          <a
-            class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 pl-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-            routerLink="/products/all"
-            >
-            Products</a
-          >
-        </li>
-        <li class="flex items-center">
-          <a
-            class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 pl-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-            routerLink="/products/all"
-            >
-            Products</a
-          >
-        </li>
-      </ul>
-    </div>
+<header class="z-10 relative mx-auto max-w-6xl px-6 pb-8 pt-4 flex md:justify-between md:items-center md:flex-row flex-col justify-center items-center">
+        
+  <a routerLink="/" class="text-center md:text-left md:w-auto font-display text-3xl uppercase tracking-wider md:mt-2 text-white">Serene And Sublime</a>
+  
+  <ul class="flex uppercase text-sm text-gray-500">
+      <li class="ml-6 md:mt-2 mt-5" *ngFor="let route of routes">
+          <a routerLink="{{route.href}}" class="text-white">{{route.name}}</a>
+      </li>
+  </ul>
+  <div class="md:mt-0 mt-5">
+      <a href="#" class="4-48 w-48 bg-white"><img src="{{image}}" alt="" class="object-cover w-10 h-10 bg-white rounded-full object-center transform transition-all hover:scale-110"></a>
   </div>
-</nav>
+
+</header>
