@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8000/api";
+const API_URL = "https://serene-sublime.herokuapp.com/api";
 const WISH = `${API_URL}/wish`
 const AUTH = `${API_URL}/auth`
 const CART = `${API_URL}/cart`
